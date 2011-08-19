@@ -1,1 +1,1 @@
-web: bin/python manage.py runserver --host=0.0.0.0
+web: gunicorn sm.app:app -b 0.0.0.0:$PORT -w 3
