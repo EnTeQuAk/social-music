@@ -4,7 +4,202 @@
 @import "grid";
 /* Your files go here */
 
-@import "style";
+
+@mixin rounded($radius: 5px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin top-rounded($radius: 5px) {
+  -webkit-border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin bottom-rounded($radius: 5px) {
+  -webkit-border-bottom-left-radius: $radius;
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  border-bottom-right-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin gradient($from: #ccc, $to: #000, $default: #999) {
+  /* non-css3 browsers */
+  background: repeat-x $default;
+  /* WebKit browsers */
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top,  $from,  $to);
+  // IE6 & 7
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$from,endColorstr=$to);
+  // IE8
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$from,endColorstr=$to);
+}
+
+
+
+h1 {
+  font-size: 40px;
+  line-height: 16px;
+  margin-bottom: 0px;
+}
+
+form {
+  p {
+    color: #999;
+
+    label { font-weight: normal; }
+
+    &.required label { font-weight: normal; }
+  }
+
+  textarea, input, button, .button, select {
+    @include rounded(3px);
+    display: block;
+    padding: 5px;
+    color: #444;
+    background-color: #fff;
+    border: 1px solid #BFBFBF;
+  }
+
+  input[type="text"], input[type="password"] {
+    width: 250px;
+    height: 20px;
+    margin-bottom: 5px;
+    background: #fff;
+  }
+
+  select {
+    display: block;
+    max-height: 300px;
+    width: 250px;
+    margin-bottom: 10px;
+    font: 16/20px monospace;
+  }
+
+  textarea {
+    background: #fff;
+    width: 435px;
+    height: 150px;
+  }
+
+  input[type="submit"], input[type="button"], button, .button {
+    color: #666;
+    font-weight: bold;
+    padding: 8px 15px;
+    border: none;
+    background: #e6e6e6;
+    margin: 30px 5px 20px 0;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
+    border: 1px solid #bfbfbf;
+    display: block;
+    text-decoration: none;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1), 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  }
+
+  .button {
+    padding: 6px 10px;
+    float: left;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover, input[type="button"]:hover,
+  button:hover, .button:hover {
+    background-color: #8ECC4C;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    border-color: #6B9939;
+    border-bottom-color: #50732B;
+  }
+
+  input[type="submit"]:active, input[type="button"]:active,
+  button:active, .buttonn:active {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+
+  fieldset {
+    @include rounded(3px);
+    border: 1px solid #bfbfbf;
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  input[type="hidden"] { display: none; }
+  input[type="checkbox"], input[type="radio"] { display: inline; }
+  label { display: block; margin-bottom: 4px; font-weight: bold; color: #444; }
+}
+
+
+header {
+  background: #465158;
+  border-bottom: 1px solid #333;
+  padding: 65px 0 35px 0;
+  color: white;
+
+  .wrapper {
+    @include content;
+    overflow: hidden;
+    .slogan {
+      @include column(10);
+      text-align: left;
+      padding-left: 100px;
+
+      h1 { text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3); }
+      p { color: #BCC1C3; }
+    }
+
+    .find {
+      @include column(10);
+      @include rounded(5px);
+      margin: 10px;
+      padding: 10px;
+      background: rgba(230, 230, 230, 0.5);
+
+      form {
+        @include rounded(2px);
+      }
+
+      input {
+        margin: 0;
+        height: 30px;
+        padding: 10px;
+        @include rounded(10);
+      }
+
+      input[type="text"] {
+        @include column(10);
+        width: 70%;
+        font-size: 18px;
+      }
+
+      input[type="text"]::-webkit-input-placeholder {
+        color: #999;
+      }
+
+      input[type="text"]:-moz-placeholder {
+        color: #999;
+      }
+
+      input[type="submit"] {
+        @include column(10);
+        width: 24%;
+        margin: 0px;
+        margin-left: -11px;
+        height: 52px;
+      }
+    }
+  }
+}
 
 /* End of your files */
 @import "post";

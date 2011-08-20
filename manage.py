@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from flaskext.script import Manager
 from sm.app import app
 
