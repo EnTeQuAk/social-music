@@ -440,26 +440,23 @@ header {
         -webkit-border-radius: 10;
         border-radius: 10; }
       header .wrapper .find input[type="text"] {
-        width: 390px;
+        width: 270px;
         float: left;
         /* margin-right */
         margin-right: 10px;
         /* padding-left */
         /* padding-right */
-        width: 70%;
         font-size: 18px; }
       header .wrapper .find input[type="text"]::-webkit-input-placeholder {
         color: #999; }
       header .wrapper .find input[type="text"]:-moz-placeholder {
         color: #999; }
       header .wrapper .find input[type="submit"] {
-        width: 390px;
+        width: 90px;
         float: left;
         /* margin-right */
-        margin-right: 10px;
         /* padding-left */
         /* padding-right */
-        width: 24%;
         margin: 0px;
         margin-left: -11px;
         height: 52px; }

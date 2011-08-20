@@ -177,8 +177,7 @@ header {
       }
 
       input[type="text"] {
-        @include column(10);
-        width: 70%;
+        @include column(7);
         font-size: 18px;
       }
 
@@ -191,8 +190,7 @@ header {
       }
 
       input[type="submit"] {
-        @include column(10);
-        width: 24%;
+        @include column(2.5, 0);
         margin: 0px;
         margin-left: -11px;
         height: 52px;
