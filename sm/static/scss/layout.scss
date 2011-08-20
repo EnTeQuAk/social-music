@@ -161,8 +161,8 @@ header {
     .find {
       @include column(10);
       @include rounded(5px);
-      margin: 10px;
-      padding: 10px;
+      margin-top: 12px;
+      padding: 5px 0px 5px 5px;
       background: rgba(230, 230, 230, 0.5);
 
       form {
