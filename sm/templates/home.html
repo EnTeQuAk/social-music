@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 
-{% block main %}
-Hey ho!
+{% block header %}
+<div class="wrapper">
+  <div class="slogan">
+    <h1>Social Music</h1>
+    <p>Hear, Enjoy and Find your Music</p>
+  </div>
+  <div class="find">
+    <form action="" method="POST">
+      <input type="text" placeholder="Find similar artists…">
+      <input type="submit" value="Go!">
+    </form>
+  </div>
+</div>
 {% endblock %}
