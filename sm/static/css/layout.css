@@ -323,9 +323,9 @@ form p {
   form p.required label {
     font-weight: normal; }
 form textarea, form input, form button, form .button, form select {
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   display: block;
   padding: 5px;
   color: #444;
@@ -428,17 +428,13 @@ header {
       margin-top: 12px;
       padding: 5px 0px 5px 5px;
       background: rgba(230, 230, 230, 0.5); }
-      header .wrapper .find form {
-        -moz-border-radius: 2px;
-        -webkit-border-radius: 2px;
-        border-radius: 2px; }
       header .wrapper .find input {
         margin: 0;
         height: 30px;
         padding: 10px;
-        -moz-border-radius: 10;
-        -webkit-border-radius: 10;
-        border-radius: 10; }
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0; }
       header .wrapper .find input[type="text"] {
         width: 270px;
         float: left;
@@ -446,6 +442,12 @@ header {
         margin-right: 10px;
         /* padding-left */
         /* padding-right */
+        -webkit-border-top-left-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        border-top-left-radius: 5px;
+        -webkit-border-bottom-left-radius: 5px;
+        -moz-border-radius-bottomleft: 5px;
+        border-bottom-left-radius: 5px;
         font-size: 18px; }
       header .wrapper .find input[type="text"]::-webkit-input-placeholder {
         color: #999; }
@@ -457,6 +459,12 @@ header {
         /* margin-right */
         /* padding-left */
         /* padding-right */
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-right-radius: 5px;
+        -webkit-border-bottom-right-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border-bottom-right-radius: 5px;
         margin: 0px;
         margin-left: -11px;
         height: 52px; }
