@@ -64,18 +64,29 @@ $ ->
   player = new Player()
   player.initialize()
 
+  opts =
+    lines: 6 # The number of lines to draw
+    length: 4 # The length of each line
+    width: 3 # The line thickness
+    radius: 5 # The radius of the inner circle
+    color: '#000' # #rbg or #rrggbb
+    speed: 1.5 ## Rounds per second
+    trail: 66 # Afterglow percentage
+    shadow: true # Whether to render a shadow
 
   $('.find form').submit(->
     console.log('Query for ' + $('.find input[type="text"]').val())
+    $('.playlist h3').spin(opts)
     $.getJSON('/get_tracks/', {artist_name: $('.find input[type="text"]').val()},
       (data) ->
-        console.log('Songs: ' + data)
         $('.empty').remove()
         $('.song').fadeOut()
         $('#song-template').tmpl(data).appendTo($('.songs'))
         $('.play-song').click(->
           player.push($(this).data('stream'))
         )
+        console.log("Stop spinner")
+        $('.playlist h3').spin(false)
     )
     
     false

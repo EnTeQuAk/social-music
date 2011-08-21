@@ -54,8 +54,10 @@
   {% endif %}
 
   <script src="{{ url_for('static', filename='js/lib/jquery.pjax.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/lib/spin.js') }}"></script>
   <script src="//ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/helpers.js') }}"></script>
 
   {% if config.DEBUG %}
   <script type="text/javascript" src="{{ url_for('static', filename='js/debug.js') }}"></script>
