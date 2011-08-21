@@ -1,0 +1,59 @@
+
+
+@mixin rounded($radius: 5px) {
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin top-rounded($radius: 5px) {
+  -webkit-border-top-left-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-left-radius: $radius;
+  border-top-right-radius: $radius;
+}
+
+@mixin left-rounded($radius: 5px) {
+  -webkit-border-top-left-radius: $radius;
+  -moz-border-radius-topleft: $radius;
+  border-top-left-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin right-rounded($radius: 5px) {
+  -webkit-border-top-right-radius: $radius;
+  -moz-border-radius-topright: $radius;
+  border-top-right-radius: $radius;
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  border-bottom-right-radius: $radius;
+}
+
+@mixin bottom-rounded($radius: 5px) {
+  -webkit-border-bottom-left-radius: $radius;
+  -webkit-border-bottom-right-radius: $radius;
+  -moz-border-radius-bottomright: $radius;
+  -moz-border-radius-bottomleft: $radius;
+  border-bottom-right-radius: $radius;
+  border-bottom-left-radius: $radius;
+}
+
+@mixin gradient($from: #ccc, $to: #000, $default: #999) {
+  /* non-css3 browsers */
+  background: repeat-x $default;
+  /* WebKit browsers */
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  /* Firefox 3.6+ */
+  background: -moz-linear-gradient(top,  $from,  $to);
+  // IE6 & 7
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$from,endColorstr=$to);
+  // IE8
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=$from,endColorstr=$to);
+}
+
+
+

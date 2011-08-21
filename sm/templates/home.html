@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block header %}
+{% include 'player.html' %}
 <div class="wrapper">
   <div class="slogan">
     <h1>Social Music</h1>
@@ -8,9 +9,39 @@
   </div>
   <div class="find">
     <form action="" method="POST">
-      <input type="text" placeholder="Find similar artists…">
+      <input type="text" placeholder="Find artists…">
       <input type="submit" value="Go!">
     </form>
   </div>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="module">
+  <div class="module-wrapper">
+    <div class="module-header">
+      <h3>What is this place?</h3>
+      <p>This is some social music player that allows you to combine the power of your mind,
+         the internet and your local harddisk.
+      <p>Currently these music providers are implemented: <a href="http://jamendo.com">Jamendo</a>.
+      <strong>More will come soon!</strong>
+    </div>
+  </div>
+</div>
+
+<div class="module">
+  <div class="module-wrapper">
+  <div class="module-header">
+    <h3>Playlist</h3>
+  </div>
+
+  <div class="module-list">
+    <div class="module-list-wrapper">
+      <ul class="songs">
+        <li class="module-item empty"><strong>There are no songs in this playlist</strong></li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 {% endblock %}
