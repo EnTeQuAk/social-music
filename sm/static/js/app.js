@@ -1,7 +1,7 @@
 (function() {
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
   $(function() {
-    var Player, player;
+    var Player, opts, player;
     Player = (function() {
       function Player() {
         this.loaded = false;
@@ -82,18 +82,30 @@
     $('a[data-pjax]').pjax();
     player = new Player();
     player.initialize();
+    opts = {
+      lines: 6,
+      length: 4,
+      width: 3,
+      radius: 5,
+      color: '#000',
+      speed: 1.5,
+      trail: 66,
+      shadow: true
+    };
     return $('.find form').submit(function() {
       console.log('Query for ' + $('.find input[type="text"]').val());
+      $('.playlist h3').spin(opts);
       $.getJSON('/get_tracks/', {
         artist_name: $('.find input[type="text"]').val()
       }, function(data) {
-        console.log('Songs: ' + data);
         $('.empty').remove();
         $('.song').fadeOut();
         $('#song-template').tmpl(data).appendTo($('.songs'));
-        return $('.play-song').click(function() {
+        $('.play-song').click(function() {
           return player.push($(this).data('stream'));
         });
+        console.log("Stop spinner");
+        return $('.playlist h3').spin(false);
       });
       return false;
     });

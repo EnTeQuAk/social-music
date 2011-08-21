@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 import json
 import requests
+import time
 from flask import Flask, render_template, request, Response
 
 
@@ -16,9 +17,6 @@ def home():
 @app.route('/get_tracks/')
 def get_artists():
     name = request.args.get('artist_name', '')
-    print request.args, request.form
-    print "query for %s" % name
     info = requests.get('http://api.jamendo.com/get2/id+name+duration+stream+album_name+artist_name/track/json/track_album+album_artist/',
                         params={'searchquery': name, 'streamencoding': 'ogg2'})
-    print info.content
     return info.content
