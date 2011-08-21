@@ -1,3 +1,5 @@
 Flask
 hg+https://bitbucket.org/danjac/flask-script#egg=Flask-Script
 gunicorn
+pyechonest
+requests
