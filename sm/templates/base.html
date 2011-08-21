@@ -55,11 +55,22 @@
 
   <script src="{{ url_for('static', filename='js/lib/jquery.pjax.js') }}"></script>
   <script src="//ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
   {% if config.DEBUG %}
   <script type="text/javascript" src="{{ url_for('static', filename='js/debug.js') }}"></script>
   {% endif %}
+
+  <script id="song-template" type="text/x-jquery-tmpl">
+    <li class="module-item song">
+      <a class="module-item-title" href="#">${name}</a>
+      <a href="#" class="quiet">(${artist_name})</a>
+      <span class="quiet">${duration}s</span>
+      <ul class="module-item-menu">
+        <li><a href="#" class="play-song" data-stream="${stream}">Play</a></li>
+      </ul>
+    </li>
+  </script>
 
 </body>
 </html>
