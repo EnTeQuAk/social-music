@@ -9,7 +9,6 @@ $ ->
       @timeleft = $('.player #timeleft')
 
     initialize: ->
-      console.log('Initialize audio')
       if @audio.buffered != undefined and @audio.buffered.length != 0
         $(@audio).bind('progress', =>
           progress = parseInt((@audio.buffered.end(0) / @audio.duration) * 100, 10)
@@ -25,9 +24,12 @@ $ ->
       $('#playtoggle').click(=>
         if @audio.paused
           @audio.play()
+          true
         else
           @audio.pause()
+          true
       )
+      true
     
     seek: ->
       rem = parseInt(@audio.duration - @audio.currentTime, 10)
@@ -47,17 +49,21 @@ $ ->
           animate: true
           slide: =>
             @manualSeek = true
+            true
           
           stop: (e, ui) =>
             @manualSeek = false
             @audio.currentTime = ui.value
+            true
         })
+        true
     
     push: (stream) ->
       if stream
         @audio.pause()
         @audio.src = stream
         @audio.play()
+        true
 
   $('a[data-pjax]').pjax()
 
@@ -75,19 +81,26 @@ $ ->
     shadow: true # Whether to render a shadow
 
   $('.find form').submit(->
-    console.log('Query for ' + $('.find input[type="text"]').val())
     $('.playlist h3').spin(opts)
-    $.getJSON('/get_tracks/', {artist_name: $('.find input[type="text"]').val()},
+    $.getJSON('/get_tracks/', {query: $('.find input[type="text"]').val()},
       (data) ->
-        $('.empty').remove()
         $('.song').fadeOut()
-        $('#song-template').tmpl(data).appendTo($('.songs'))
-        $('.play-song').click(->
-          player.push($(this).data('stream'))
+        $.each(data, ->
+          if @.track
+            for resolver in resolvers.ALL
+              results = resolver(@.artist, @.album, @.track, (obj) ->
+                $('.empty').remove()
+                $('#song-template').tmpl(obj).appendTo($('.songs')).click(->
+                  player.push(obj.stream)
+                  true
+                ).fadeIn()
+                true
+              )
         )
-        console.log("Stop spinner")
         $('.playlist h3').spin(false)
+        false
     )
     
     false
   )
+  false

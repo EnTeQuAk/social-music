@@ -56,6 +56,7 @@
   <script src="{{ url_for('static', filename='js/lib/jquery.pjax.js') }}"></script>
   <script src="{{ url_for('static', filename='js/lib/spin.js') }}"></script>
   <script src="//ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+  <script src="{{ url_for('static', filename='js/resolvers.js') }}"></script>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   <script src="{{ url_for('static', filename='js/helpers.js') }}"></script>
 
@@ -65,8 +66,8 @@
 
   <script id="song-template" type="text/x-jquery-tmpl">
     <li class="module-item song">
-      <a class="module-item-title" href="#">${name}</a>
-      <a href="#" class="quiet">(${artist_name})</a>
+      <a class="module-item-title" href="#">${track}</a>
+      <a href="#" class="quiet">(${artist})</a>
       <span class="quiet">${duration}s</span>
       <ul class="module-item-menu">
         <li><a href="#" class="play-song" data-stream="${stream}">Play</a></li>
