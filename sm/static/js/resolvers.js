@@ -4,7 +4,6 @@
     var args, results, url;
     url = 'http://api.jamendo.com/get2/id+name+duration+stream+album_name+artist_name/track/json/track_album+album_artist/';
     args = {};
-    console.log("Artist: " + artist + " Album: " + album + " Title: " + title);
     if (title !== '') {
       args.name = title;
     }
@@ -19,7 +18,6 @@
     results = [];
     return $.get(url, args, function(data) {
       return $.each(data, function() {
-        console.log("GOT " + $.param(this));
         callback({
           artist: this.artist_name,
           album: this.album_name,
