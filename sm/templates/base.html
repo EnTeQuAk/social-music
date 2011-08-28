@@ -65,14 +65,16 @@
   {% endif %}
 
   <script id="song-template" type="text/x-jquery-tmpl">
+  {% raw %}
     <li class="module-item song">
       <a class="module-item-title" href="#">${track}</a>
       <a href="#" class="quiet">(${artist})</a>
-      <span class="quiet">${duration}s</span>
+      <span class="quiet">{{if duration}}${duration}s{{/if}}</span>
       <ul class="module-item-menu">
         <li><a href="#" class="play-song" data-stream="${stream}">Play</a></li>
       </ul>
     </li>
+  {% endraw %}
   </script>
 
 </body>

@@ -34,5 +34,43 @@
   this.resolvers.jamendo.info = {
     name: 'Jamendo'
   };
-  this.resolvers.ALL = [this.resolvers.jamendo];
+  this.resolvers.dilandau = function(artist, album, title, callback) {
+    var args, url;
+    url = 'http://www.dilandau.eu/download_music/';
+    args = [];
+    if (title !== '') {
+      args.push(title.replace(/\s/g, "-"));
+    }
+    if (artist !== '') {
+      if (title !== '') {
+        args.push('-');
+      }
+      args.push(artist.replace(/\s/g, '-'));
+    }
+    args.push('1.html');
+    url = url + encodeURIComponent(args.join('-'));
+    return $.ajax({
+      url: url,
+      success: function(data) {
+        var lower, match, track_title;
+        match = $(data).find('a.button.download_button')[0];
+        track_title = $(data).find('h2.title_song.item')[0];
+        lower = track_title.title.toLowerCase();
+        if (lower.indexOf(artist.toLowerCase()) !== -1 && lower.indexOf(title.toLowerCase()) !== -1) {
+          return callback({
+            artist: artist,
+            album: album,
+            track: title,
+            source: 'Dilandau',
+            stream: decodeURI($(match).prop('href')),
+            mime: 'mp3'
+          });
+        }
+      }
+    });
+  };
+  this.resolvers.dilandau.info = {
+    name: 'Dilandau'
+  };
+  this.resolvers.ALL = [this.resolvers.jamendo, this.resolvers.dilandau];
 }).call(this);

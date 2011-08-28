@@ -82,12 +82,14 @@ $ ->
 
   $('.find form').submit(->
     $('.playlist h3').spin(opts)
+    console.log("QUERY")
     $.getJSON('/get_tracks/', {query: $('.find input[type="text"]').val()},
       (data) ->
         $('.song').fadeOut()
         $.each(data, ->
           if @.track
             for resolver in resolvers.ALL
+              console.log("RESOLVE " + resolver.info.name)
               results = resolver(@.artist, @.album, @.track, (obj) ->
                 $('.empty').remove()
                 $('#song-template').tmpl(obj).appendTo($('.songs')).click(->

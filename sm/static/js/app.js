@@ -100,6 +100,7 @@
     };
     return $('.find form').submit(function() {
       $('.playlist h3').spin(opts);
+      console.log("QUERY");
       $.getJSON('/get_tracks/', {
         query: $('.find input[type="text"]').val()
       }, function(data) {
@@ -111,6 +112,7 @@
             _results = [];
             for (_i = 0, _len = _ref.length; _i < _len; _i++) {
               resolver = _ref[_i];
+              console.log("RESOLVE " + resolver.info.name);
               _results.push(results = resolver(this.artist, this.album, this.track, function(obj) {
                 $('.empty').remove();
                 $('#song-template').tmpl(obj).appendTo($('.songs')).click(function() {

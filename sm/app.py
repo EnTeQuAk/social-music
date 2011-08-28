@@ -39,25 +39,33 @@ def get_tracks():
     if any(p in moods for p in parts):
         for part in parts:
             if part in moods:
-                artists.extend(eartist.similar(mood=part))
+                artists.extend(eartist.similar(mood=part, results=15))
     if any(p in styles for p in parts):
         for part in parts:
             if part in styles:
-                artists.extend(eartist.similar(style=part))
+                artists.extend(eartist.similar(style=part, results=15))
+
+    random.shuffle(artists)
 
     extracted = eartist.extract(query)
     if extracted:
+        for artist in extracted:
+            artists.insert(0, eartist.Artist(id=artist.id))
         artists.extend(eartist.similar(ids=[art.id for art in extracted], results=15))
 
     if artists:
         songs = list(flatten_iterator(a.get_songs() for a in artists))
-        random.shuffle(songs)
+        #random.shuffle(songs)
+
+    real = {}
+    for song in songs:
+        real[song.title] = song
 
     retval = [{
         'track': s.title,
         'artist': s.artist_name,
         'album': ''
-    } for s in songs[:15]]
+    } for s in real.values()[:15]]
 
 
     info = requests.get('http://api.jamendo.com/get2/id+name+duration+stream+album_name+artist_name/track/json/track_album+album_artist/',

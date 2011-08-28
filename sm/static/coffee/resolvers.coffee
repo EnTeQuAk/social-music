@@ -32,4 +32,39 @@
   )
 @resolvers.jamendo.info = {name: 'Jamendo'}
 
-@resolvers.ALL = [@resolvers.jamendo]
+
+@resolvers.dilandau = (artist, album, title, callback) ->
+  url = 'http://www.dilandau.eu/download_music/'
+  args = []
+
+  if title isnt ''
+    args.push(title.replace(/\s/g, "-"))
+  if artist isnt ''
+    if title isnt ''
+      args.push('-')
+    args.push(artist.replace(/\s/g, '-'))
+
+  args.push('1.html')
+  url = url + encodeURIComponent(args.join('-'))
+
+
+  $.ajax({
+    url: url,
+    success: (data) ->
+      match = $(data).find('a.button.download_button')[0]
+      track_title = $(data).find('h2.title_song.item')[0]
+      lower = track_title.title.toLowerCase()
+
+      if lower.indexOf(artist.toLowerCase()) isnt -1 and lower.indexOf(title.toLowerCase()) isnt -1
+        callback({
+          artist: artist,
+          album: album,
+          track: title,
+          source: 'Dilandau',
+          stream: decodeURI($(match).prop('href')),
+          mime: 'mp3',
+        })
+  })
+@resolvers.dilandau.info = {name: 'Dilandau'}
+
+@resolvers.ALL = [@resolvers.jamendo, @resolvers.dilandau]
