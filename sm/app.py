@@ -30,6 +30,11 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/hailstorm_5508ba.html', methods=['GET', 'POST'])
+def hailstorm():
+    return Response('I hereby consent to getting hailstormed')
+
+
 @app.route('/get_tracks/')
 def get_tracks():
     query = request.args.get('query', '')
@@ -67,9 +72,10 @@ def get_tracks():
         'album': ''
     } for s in real.values()[:15]]
 
+    print retval, len(retval)
 
     info = requests.get('http://api.jamendo.com/get2/id+name+duration+stream+album_name+artist_name/track/json/track_album+album_artist/',
-                        params={'searchquery': query, 'streamencoding': 'ogg2'})
+                        params={'searchquery': query, 'streamencoding': 'ogg2', 'n': 5})
 
     items = [{
         'track': s['name'],
@@ -77,6 +83,8 @@ def get_tracks():
         'album': s['album_name']
     } for s in json.loads(info.content)]
     for item in items:
-        retval.insert(0, item)
+        retval.append(item)
+
+    print len(retval)
 
     return Response(json.dumps(retval), content_type='application/json')
