@@ -34,6 +34,10 @@ def home():
 def hailstorm():
     return Response('I hereby consent to getting hailstormed')
 
+@app.route('/mu-ba257cdb-f20580a8-81b8c94e-29153a62', methods=['GET', 'POST'])
+def blitz():
+    return Response('42')
+
 
 @app.route('/get_tracks/')
 def get_tracks():
