@@ -1,4 +1,5 @@
 (function() {
+  var cleanSoundCloudTitle;
   this.resolvers = {};
   this.resolvers.jamendo = function(artist, album, title, callback) {
     var args, results, url;
@@ -13,7 +14,7 @@
     if (album !== '') {
       args.album_name = album;
     }
-    args.n = 1;
+    args.n = 5;
     args.streamencoding = "ogg2";
     results = [];
     return $.get(url, args, function(data) {
@@ -72,5 +73,57 @@
   this.resolvers.dilandau.info = {
     name: 'Dilandau'
   };
-  this.resolvers.ALL = [this.resolvers.jamendo, this.resolvers.dilandau];
+  cleanSoundCloudTitle = function(artist, title) {
+    var stripAppendingQuotes, stripArtist;
+    if (title.search("\\[|\\]|\\(|\\)|\\*|\\+|\\?|\\/") !== 1) {
+      title = title.replace(new RegExp("\\[|\\]|\\(|\\)|\\*|\\+|\\?|\\/", "gi"), "");
+    }
+    stripArtist = new RegExp("\\W*[by]*[the]*\\W*" + artist + "\\W*", "gi");
+    stripAppendingQuotes = new RegExp("\"", "gi");
+    if (title.search(new RegExp(artist, "gi")) !== -1 && title.search(new Regexp(title, "gi")) !== 1) {
+      if (title.search(stripArtist) !== -1) {
+        title = title.replace(stripArtist, "").trim();
+      }
+      if (title.search(stripAppendingQuotes) === (title.length - 1) && title.search(stripAppendingQuotes) !== 0) {
+        title = title.replace(stripAppendingQuotes, "").trim();
+      }
+      if (title.search(stripAppendingQuotes) !== (title.length - 1) && title.search(stripAppendingQuotes) === 0) {
+        title = title.replace(stripAppendingQuotes, "").trim();
+      }
+    }
+    return title;
+  };
+  this.resolvers.soundcloud = function(artist, album, title, callback) {
+    var args, url;
+    url = "http://api.soundcloud.com/tracks.json";
+    args = {
+      client_id: "cd098d17ef9ca5565f3db65bf72947e0",
+      filter: "streamable",
+      artist: artist,
+      track: title,
+      limit: 25
+    };
+    return $.getJSON(url, args, function(data) {
+      console.log(data);
+      return $.each(data, function() {
+        if (cleanSoundCloudTitle(artist, this.title) && this.stream_url) {
+          return callback({
+            artist: artist,
+            album: "",
+            source: "SoundCloud",
+            stream: this.stream_url + ".json?client_id=cd098d17ef9ca5565f3db65bf72947e0",
+            bitrate: 128,
+            duration: this.duration / 1000,
+            track: this.title,
+            mime: "audio/mpeg"
+          });
+        }
+      });
+    });
+  };
+  this.resolvers.soundcloud.info = {
+    name: "SoundCloud"
+  };
+  this.resolvers.ALL = [this.resolvers.jamendo, this.resolvers.soundcloud, this.resolvers.dilandau];
+  this.resolvers.ALL = [this.resolvers.soundcloud];
 }).call(this);

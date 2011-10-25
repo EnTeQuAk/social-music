@@ -96,12 +96,13 @@ $ ->
                   player.push(obj.stream)
                   true
                 ).fadeIn()
+                $('.song').unique()
                 true
               )
         )
         $('.playlist h3').spin(false)
         false
     )
-    
+
     false
   )

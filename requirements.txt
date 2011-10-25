@@ -4,3 +4,4 @@ gunicorn
 pyechonest
 requests
 Fabric
+newrelic

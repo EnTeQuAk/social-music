@@ -119,6 +119,7 @@
                   player.push(obj.stream);
                   return true;
                 }).fadeIn();
+                $('.song').unique();
                 return true;
               }));
             }
