@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-from flaskext.script import Manager
-from sm.app import app
-
-manager = Manager(app)
+import os, sys
 
 if __name__ == "__main__":
-    manager.run()
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sm.settings")
+
+    from django.core.management import execute_from_command_line
+
+    execute_from_command_line(sys.argv)

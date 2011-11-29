@@ -19,13 +19,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- CSS: implied media="all" -->
-  {% if config.DEBUG %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  {% if debug %}
+  <link rel="stylesheet" href="{{ url_for('static', path='css/layout.css') }}">
   {% else %}
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
   {% endif %}
 
-  <script src="{{ url_for('static', filename='js/lib/modernizr.min.js') }}"></script>
+  <script src="{{ url_for('static', path='js/lib/modernizr.min.js') }}"></script>
 
   <!-- More ideas for your <head> here: h5bp.com/docs/#head-Tips -->
 </head>
@@ -45,23 +45,23 @@
   </div> <!--! end of #container -->
 
   <!-- Grab Google CDN's jQuery, with a protocol relative URL -->
-  {% if config.DEBUG %}
-  <script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery-1.6.2.min.js') }}"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='js/lib/jquery-ui-1.8.16.min.js') }}"></script>
+  {% if debug %}
+  <script type="text/javascript" src="{{ url_for('static', path='js/lib/jquery-1.6.2.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', path='js/lib/jquery-ui-1.8.16.min.js') }}"></script>
   {% else %}
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
   {% endif %}
 
-  <script src="{{ url_for('static', filename='js/lib/jquery.pjax.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/lib/spin.js') }}"></script>
+  <script src="{{ url_for('static', path='js/lib/jquery.pjax.js') }}"></script>
+  <script src="{{ url_for('static', path='js/lib/spin.js') }}"></script>
   <script src="//ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
-  <script src="{{ url_for('static', filename='js/resolvers.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/helpers.js') }}"></script>
+  <script src="{{ url_for('static', path='js/resolvers.js') }}"></script>
+  <script src="{{ url_for('static', path='js/app.js') }}"></script>
+  <script src="{{ url_for('static', path='js/helpers.js') }}"></script>
 
-  {% if config.DEBUG %}
-  <script type="text/javascript" src="{{ url_for('static', filename='js/debug.js') }}"></script>
+  {% if debug %}
+  <script type="text/javascript" src="{{ url_for('static', path='js/debug.js') }}"></script>
   {% endif %}
 
   <script id="song-template" type="text/x-jquery-tmpl">
