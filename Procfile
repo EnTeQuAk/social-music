@@ -1,1 +1,1 @@
-web: bin/python bin/gunicorn sm.app:app -b 0.0.0.0:$PORT -w 8
+web: bin/python bin/gunicorn sm.wsgi:application -b 0.0.0.0:$PORT -w 8
