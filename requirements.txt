@@ -1,4 +1,4 @@
-Django
+-e git+https://github.com/django/django.git
 Jinja2
 gunicorn
 pyechonest
