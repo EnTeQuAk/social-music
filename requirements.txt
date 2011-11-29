@@ -1,5 +1,5 @@
-Flask
-hg+https://bitbucket.org/danjac/flask-script#egg=Flask-Script
+Django
+Jinja2
 gunicorn
 pyechonest
 requests
