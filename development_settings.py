@@ -7,3 +7,6 @@ DATABASES = {
         'NAME': 'dev.db'
     }
 }
+
+
+

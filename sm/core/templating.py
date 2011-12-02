@@ -12,8 +12,12 @@ from jinja2 import Environment, FileSystemLoader, escape, TemplateNotFound
 
 
 def url_for(viewname, *args, **kwargs):
-    return urlresolvers.reverse(viewname, args=args or None,
-                                kwargs=kwargs or None)
+    endpoint = urlresolvers.reverse(viewname, args=args or None,
+                                    kwargs=kwargs or None)
+    if viewname == 'static':
+        endpoint = settings.STATIC_URL + endpoint[7:]
+
+    return endpoint
 
 
 def render_template(template_name, context, flash=False):

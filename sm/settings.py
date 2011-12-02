@@ -67,7 +67,7 @@ STATIC_ROOT = os.path.join(BASE_PATH, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = '/static/'
+STATIC_URL = 'http://social-music.s3.amazonaws.com'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -86,6 +86,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID = 'AKIAJICYGPGWBJU77EWQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'social-music'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'zsm&qrh5d1m-bqrb=b*kkzx)ysn25@iknc*my0v_gx@by7(%i9'
